@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda Autoescuela · La agenda del profesor de prácticas · NovaApps</title>
+<meta name="description" content="Agenda para profesores de autoescuela: clases prácticas, exámenes y avisos a los alumnos por WhatsApp desde tu tablet. Sin nube: los datos se quedan en tu dispositivo. 30 días de prueba gratis.">
+<link rel="icon" href="img/icono.png">
+<!-- NovaApps · web v1.0 · nov 2026 -->
+<style>
+:root{--azul:#1f4e8c;--azul2:#163a69;--noche:#0f2747;--tinta:#1d2533;--gris:#5d6878;--linea:#dde3ea;--fondo:#f5f7fa;--verde:#1fae5b;--wa:#25d366;--ambar:#f2b33d}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:var(--tinta);background:#fff}
+a{color:var(--azul)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+/* Cabecera */
+.top{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea)}
+.top .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.marca{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;color:var(--azul2);text-decoration:none;letter-spacing:-.2px}
+.marca img{width:34px;height:34px;border-radius:8px}
+.top nav{margin-left:auto;display:flex;gap:22px;font-size:15px}
+.top nav a{color:var(--gris);text-decoration:none}
+.top nav a:hover{color:var(--azul)}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:13px 22px;font-weight:700;text-decoration:none;font-size:16px;border:0;cursor:pointer}
+.btn.pri{background:var(--ambar);color:#2b1d00}
+.btn.pri:hover{filter:brightness(1.05)}
+.btn.sec{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35)}
+.btn.azul{background:var(--azul);color:#fff}
+.btn.sm{padding:8px 14px;font-size:14px}
+/* Portada */
+.hero{background:radial-gradient(1200px 500px at 85% -10%,#2b65b0 0,transparent 60%),linear-gradient(160deg,var(--azul2),var(--noche));color:#fff;padding:70px 0 0;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+.etiqueta{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:5px 12px;border-radius:999px;font-size:13.5px;margin-bottom:18px}
+.hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin:0 0 18px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--ambar)}
+.hero p.lead{font-size:19px;color:#d6e2f3;margin:0 0 28px;max-width:520px}
+.hero .acciones{display:flex;gap:12px;flex-wrap:wrap}
+.hero small{display:block;margin-top:14px;color:#a9bddb;font-size:14px}
+.marco{background:#fff;border-radius:14px 14px 0 0;padding:10px 10px 0;box-shadow:0 -10px 60px rgba(0,0,0,.35);transform:translateY(20px)}
+.marco .barra{display:flex;gap:6px;padding:2px 4px 9px}
+.marco .barra i{width:10px;height:10px;border-radius:50%;background:#d7dde6}
+.marco img{display:block;width:100%;border-radius:8px 8px 0 0}
+/* Secciones */
+section{padding:84px 0}
+section.gris{background:var(--fondo)}
+h2{font-size:clamp(28px,3.4vw,38px);line-height:1.15;margin:0 0 14px;letter-spacing:-.6px;color:var(--azul2)}
+.sub{color:var(--gris);font-size:18px;max-width:680px;margin:0 0 44px}
+.rejilla{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tarjeta{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:24px}
+.tarjeta .ico{font-size:28px;line-height:1;margin-bottom:12px}
+.tarjeta h3{margin:0 0 6px;font-size:18.5px}
+.tarjeta p{margin:0;color:var(--gris);font-size:15.5px}
+/* Galería */
+.galeria{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+figure{margin:0}
+figure img{width:100%;display:block;border-radius:12px;border:1px solid var(--linea);box-shadow:0 10px 30px rgba(16,39,71,.10);cursor:zoom-in}
+figcaption{margin-top:10px;font-size:15px;color:var(--gris)}
+figcaption b{color:var(--tinta)}
+/* Privacidad */
+.privacidad{display:grid;grid-template-columns:auto 1fr;gap:30px;align-items:center;background:linear-gradient(135deg,#eaf2fd,#f5f9ff);border:1px solid #c9dbf3;border-radius:18px;padding:38px}
+.privacidad .candado{font-size:64px}
+.privacidad h2{margin-bottom:8px}
+.privacidad ul{margin:10px 0 0;padding-left:20px;color:var(--gris)}
+/* Pasos */
+.pasos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:p}
+.paso{position:relative;padding:26px 24px 24px;border-radius:14px;background:#fff;border:1px solid var(--linea)}
+.paso::before{counter-increment:p;content:counter(p);position:absolute;top:-16px;left:22px;width:34px;height:34px;border-radius:50%;background:var(--azul);color:#fff;font-weight:800;display:grid;place-items:center}
+.paso h3{margin:6px 0 6px;font-size:18px}
+.paso p{margin:0;color:var(--gris);font-size:15.5px}
+/* Precios */
+.precios{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{border:1px solid var(--linea);border-radius:16px;padding:28px;background:#fff;display:flex;flex-direction:column}
+.plan.dest{border:2px solid var(--azul);box-shadow:0 14px 40px rgba(31,78,140,.15);position:relative}
+.plan.dest .cinta{position:absolute;top:-13px;right:20px;background:var(--ambar);color:#2b1d00;font-size:12.5px;font-weight:800;padding:4px 10px;border-radius:999px}
+.plan h3{margin:0 0 4px;font-size:18px;color:var(--gris);font-weight:600}
+.precio{font-size:44px;font-weight:800;letter-spacing:-1px;color:var(--azul2);line-height:1.1}
+.precio small{font-size:16px;font-weight:600;color:var(--gris);letter-spacing:0}
+.plan ul{list-style:none;padding:0;margin:18px 0 22px;color:var(--gris);font-size:15.5px;flex:1}
+.plan li{padding:5px 0 5px 26px;position:relative}
+.plan li::before{content:"✓";position:absolute;left:0;color:var(--verde);font-weight:800}
+.nota{color:var(--gris);font-size:14px;margin-top:18px}
+/* Preguntas */
+details{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:16px 20px;margin-bottom:12px}
+summary{cursor:pointer;font-weight:700;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";float:right;color:var(--azul);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 0;color:var(--gris)}
+/* Contacto */
+.contacto{background:linear-gradient(160deg,var(--azul2),var(--noche));color:#fff;text-align:center}
+.contacto h2{color:#fff}
+.contacto .sub{color:#c7d6ec;margin:0 auto 30px}
+.contacto .acciones{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{background:var(--noche);color:#8fa4c4;font-size:14px;padding:28px 0;border-top:1px solid rgba(255,255,255,.08)}
+footer .wrap{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+footer a{color:#c7d6ec}
+.legal{background:var(--fondo);font-size:14.5px;color:var(--gris);padding:50px 0}
+.legal h3{color:var(--tinta);font-size:16px;margin:22px 0 6px}
+/* Ampliar imagen */
+#zoom{position:fixed;inset:0;background:rgba(8,20,40,.88);display:none;align-items:center;justify-content:center;padding:20px;z-index:50;cursor:zoom-out}
+#zoom img{max-width:100%;max-height:100%;border-radius:10px}
+@media(max-width:900px){
+  .hero .wrap,.galeria,.privacidad{grid-template-columns:1fr}
+  .rejilla,.pasos,.precios{grid-template-columns:1fr}
+  .top nav{display:none}
+  .privacidad{text-align:left}
+  section{padding:60px 0}
+  .hero{padding-top:44px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#"><img src="img/icono.png" alt="">NovaApps</a>
+    <nav><a href="#funciones">Funciones</a><a href="#capturas">Capturas</a><a href="#precios">Precios</a><a href="#preguntas">Preguntas</a></nav>
+    <a class="btn azul sm" href="https://novaapps-es.github.io/agenda/">Probar gratis</a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <span class="etiqueta">🚗 Para profesores de autoescuela · coche y moto</span>
+      <h1>Tu agenda de prácticas, <em>sin papeles</em> y con avisos por WhatsApp</h1>
+      <p class="lead">Clases, exámenes, bonos y mensajes a los alumnos, todo en tu tablet. Sin internet obligatorio y sin nube: los datos de tus alumnos no salen de tu dispositivo.</p>
+      <div class="acciones">
+        <a class="btn pri" href="https://novaapps-es.github.io/agenda/">Probar 30 días gratis</a>
+        <a class="btn sec" href="#contacto">Pedir información</a>
+      </div>
+      <small>Sin registro ni tarjeta. Se instala en un minuto desde Chrome.</small>
+    </div>
+    <div class="marco">
+      <div class="barra"><i></i><i></i><i></i></div>
+      <img src="img/agenda.jpg" alt="Semana de clases prácticas en la Agenda Autoescuela" loading="eager">
+    </div>
+  </div>
+</div>
+
+<section id="funciones">
+  <div class="wrap">
+    <h2>Pensada por y para el profesor de prácticas</h2>
+    <p class="sub">Nada de programas de gestión enormes. Solo lo que usas cada día en el coche y en la pista.</p>
+    <div class="rejilla">
+      <div class="tarjeta"><div class="ico">📅</div><h3>Semana de un vistazo</h3><p>Clases de coche y moto por colores, de 8:00 a 21:00, con bloqueo de cambios a menos de 24 horas.</p></div>
+      <div class="tarjeta"><div class="ico">📲</div><h3>Avisos por WhatsApp</h3><p>Cada alumno recibe sus clases de la semana y sus exámenes con un toque. El mensaje ya va escrito.</p></div>
+      <div class="tarjeta"><div class="ico">🗓️</div><h3>Plan semanal</h3><p>Pregunta la disponibilidad a todos de golpe, pega sus respuestas y la app reparte las clases.</p></div>
+      <div class="tarjeta"><div class="ico">🎯</div><h3>Exámenes B, AM, A1 y A2</h3><p>Teórico, destreza y circulación con fecha y hora, avisos al alumno y control de resultados.</p></div>
+      <div class="tarjeta"><div class="ico">🎟️</div><h3>Bonos de clases</h3><p>Cada clase dada o falta descuenta del bono del alumno. Sabes al momento cuántas le quedan.</p></div>
+      <div class="tarjeta"><div class="ico">👥</div><h3>Alumnos, profesores y vehículos</h3><p>Ficha con foto, permiso, profesor y vehículo habitual. Te avisa si un vehículo tiene la ITV caducada.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="capturas" class="gris">
+  <div class="wrap">
+    <h2>Así se ve por dentro</h2>
+    <p class="sub">Capturas reales de la app con alumnos de ejemplo. Pulsa en una para verla en grande.</p>
+    <div class="galeria">
+      <figure><img src="img/agenda.jpg" alt="Clases prácticas de la semana" loading="lazy"><figcaption><b>Clases prácticas.</b> Toda la semana, con los exámenes arriba de cada día.</figcaption></figure>
+      <figure><img src="img/avisos.jpg" alt="Avisos por WhatsApp pendientes" loading="lazy"><figcaption><b>Avisos por WhatsApp.</b> Lista de pendientes y envío uno detrás de otro.</figcaption></figure>
+      <figure><img src="img/plan.jpg" alt="Plan semanal" loading="lazy"><figcaption><b>Plan semanal.</b> Disponibilidad de cada alumno y reparto de clases.</figcaption></figure>
+      <figure><img src="img/alumnos.jpg" alt="Listado de alumnos" loading="lazy"><figcaption><b>Alumnos.</b> Clases hechas y pendientes, permiso y situación de cada uno.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="privacidad">
+      <div class="candado">🔒</div>
+      <div>
+        <h2>Los datos de tus alumnos, en tu tablet. Y en ningún sitio más.</h2>
+        <p style="margin:0;color:var(--gris)">La agenda no tiene servidores ni cuentas en la nube. Nombres, teléfonos y fotos se guardan solo en tu dispositivo.</p>
+        <ul>
+          <li>Funciona sin conexión: en la pista o en el coche, aunque no haya cobertura.</li>
+          <li>Copia de seguridad con un toque, que puedes enviarte al correo o a Google Drive.</li>
+          <li>Acceso con PIN, para que nadie más la abra.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gris">
+  <div class="wrap">
+    <h2>Empieza hoy en tres pasos</h2>
+    <p class="sub">Sin instaladores ni tiendas de aplicaciones.</p>
+    <div class="pasos">
+      <div class="paso"><h3>Instálala</h3><p>Abre <b>novaapps-es.github.io/agenda</b> en Chrome y pulsa «Instalar aplicación». Te queda un icono como cualquier app.</p></div>
+      <div class="paso"><h3>Pruébala 30 días</h3><p>Completa, sin límites y gratis. Mete a tus alumnos y úsala en tu día a día.</p></div>
+      <div class="paso"><h3>Activa tu licencia</h3><p>Si te convence, nos envías el número de tu tablet y te mandamos el código. Tus datos siguen igual.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="precios">
+  <div class="wrap">
+    <h2>Un precio claro, por tablet</h2>
+    <p class="sub">Sin permanencia. Si no renuevas, la app se bloquea pero no borra nada: puedes descargar tus datos cuando quieras.</p>
+    <div class="precios">
+      <div class="plan">
+        <h3>Prueba</h3>
+        <div class="precio">0 €<small> · 30 días</small></div>
+        <ul><li>Todas las funciones</li><li>Sin registro ni tarjeta</li><li>Tus datos se conservan al activar</li></ul>
+        <a class="btn azul" href="https://novaapps-es.github.io/agenda/" style="justify-content:center">Empezar la prueba</a>
+      </div>
+      <div class="plan dest">
+        <span class="cinta">Ahorras 60 €</span>
+        <h3>Anual</h3>
+        <div class="precio">180 €<small> / año</small></div>
+        <ul><li>Todas las funciones</li><li>Actualizaciones incluidas</li><li>Ayuda por correo</li><li>Equivale a 15 € al mes</li></ul>
+        <a class="btn pri" href="#contacto" style="justify-content:center">Quiero la licencia anual</a>
+      </div>
+      <div class="plan">
+        <h3>Mensual</h3>
+        <div class="precio">20 €<small> / mes</small></div>
+        <ul><li>Todas las funciones</li><li>Actualizaciones incluidas</li><li>Ayuda por correo</li></ul>
+        <a class="btn azul" href="#contacto" style="justify-content:center">Quiero la licencia mensual</a>
+      </div>
+    </div>
+    <p class="nota">Precios por tablet o dispositivo, IVA incluido. ¿Autoescuela con varios profesores? Escríbenos y te hacemos precio.</p>
+  </div>
+</section>
+
+<section id="preguntas" class="gris">
+  <div class="wrap" style="max-width:820px">
+    <h2>Preguntas frecuentes</h2>
+    <p class="sub">Y si te queda alguna duda, escríbenos.</p>
+    <details><summary>¿En qué dispositivos funciona?</summary><p>En tablets y móviles Android con Chrome (recomendamos una tablet de 10 pulgadas para trabajar cómodo) y en cualquier ordenador con Chrome o Edge.</p></details>
+    <details><summary>¿Necesito internet?</summary><p>Solo para instalarla y para enviar los WhatsApp. El resto funciona sin conexión.</p></details>
+    <details><summary>¿Dónde se guardan los datos de mis alumnos?</summary><p>Únicamente en tu dispositivo. NovaApps no recibe ni guarda ningún dato de tus alumnos. Por eso es importante hacer copia de seguridad: la app te lo recuerda.</p></details>
+    <details><summary>¿Qué pasa si cambio de tablet?</summary><p>Haces una copia en la tablet antigua, la abres en la nueva y nos pides el traspaso de la licencia.</p></details>
+    <details><summary>¿Y si dejo de pagar?</summary><p>La agenda se bloquea, pero no borra nada. Puedes descargar tus datos y, si renuevas más adelante, todo aparece como lo dejaste.</p></details>
+    <details><summary>¿Gestiona cobros o facturas?</summary><p>No. Está pensada para organizar clases y exámenes; los cobros los lleva la autoescuela. Sí controla los bonos de clases de cada alumno.</p></details>
+  </div>
+</section>
+
+<section id="contacto" class="contacto">
+  <div class="wrap">
+    <h2>¿Hablamos?</h2>
+    <p class="sub">Cuéntanos cómo trabajas y te ayudamos a ponerla en marcha. Para la licencia, mándanos el número que aparece en tu tablet.</p>
+    <div class="acciones">
+      <a class="btn pri" href="mailto:novaapps.es@gmail.com?subject=Agenda%20Autoescuela%20-%20Informaci%C3%B3n">✉️ novaapps.es@gmail.com</a>
+      <a class="btn sec" href="https://novaapps-es.github.io/agenda/">Probar 30 días gratis</a>
+    </div>
+  </div>
+</section>
+
+<div class="legal" id="legal">
+  <div class="wrap" style="max-width:820px">
+    <h3>Aviso legal</h3>
+    <p>Este sitio web y la aplicación Agenda Autoescuela son de NovaApps. Contacto: <a href="mailto:novaapps.es@gmail.com">novaapps.es@gmail.com</a>.<!-- PENDIENTE antes de cobrar: añadir nombre y apellidos o razón social, NIF y domicilio del titular (Ley 34/2002, art. 10). --></p>
+    <h3>Privacidad</h3>
+    <p>Esta web no usa cookies ni herramientas de seguimiento y no recoge datos personales. La aplicación guarda la información que introduces únicamente en tu dispositivo; NovaApps no tiene acceso a ella. Si nos escribes por correo, usaremos tus datos solo para responderte y gestionar tu licencia, y puedes pedir que los borremos en cualquier momento.</p>
+    <h3>Responsabilidad</h3>
+    <p>La aplicación es una herramienta de organización. El usuario es responsable de los datos que introduce y de hacer sus copias de seguridad.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 NovaApps · Agenda Autoescuela</span>
+    <span><a href="#legal">Aviso legal y privacidad</a> · <a href="mailto:novaapps.es@gmail.com">Contacto</a></span>
+  </div>
+</footer>
+
+<div id="zoom"><img alt=""></div>
+<script>
+const z=document.getElementById("zoom"), zi=z.querySelector("img");
+document.querySelectorAll("figure img, .marco img").forEach(i=>i.addEventListener("click",()=>{ zi.src=i.src; zi.alt=i.alt; z.style.display="flex"; }));
+z.addEventListener("click",()=>{ z.style.display="none"; });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") z.style.display="none"; });
+</script>
+</body>
+</html>
